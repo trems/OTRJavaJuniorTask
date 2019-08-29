@@ -5,8 +5,11 @@ import java.net.UnknownHostException;
 
 public class IPRange {
 
-
     public static void printRange(final String ip1, final String ip2) {
+        if (ip1 == null || ip1.isEmpty() || ip2 == null || ip2.isEmpty()) {
+            System.err.println("Введенные ip-адреса некорректны");
+        }
+
         long start = 0;
         long end = 0;
         try {
