@@ -1,8 +1,33 @@
 package ru.otr.iprange;
 
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class IPRange {
+
+
+    public static void printRange(final String ip1, final String ip2) {
+        long start = 0;
+        long end = 0;
+        try {
+            start = ipToLong(InetAddress.getByName(ip1));
+            end = ipToLong(InetAddress.getByName(ip2));
+
+        } catch (UnknownHostException e) {
+            System.err.println("Введенные ip-адреса некорректны");
+        }
+
+        if (end < start) {
+            long tmp = end;
+            end = start;
+            start = tmp;
+        }
+
+        while (start+1 < end) {
+            System.out.println(longToIp(start+1));
+            start++;
+        }
+    }
 
 
     private static long ipToLong(final InetAddress ip) {
