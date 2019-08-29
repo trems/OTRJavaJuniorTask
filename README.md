@@ -1,0 +1,1 @@
+Test tasks for Junior Java Developer position at [OTR](http://www.otr.ru) Company.
