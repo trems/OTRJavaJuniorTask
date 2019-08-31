@@ -19,7 +19,7 @@ public class IPRange {
         } catch (UnknownHostException e) {
             System.err.println("Введенные ip-адреса некорректны");
         }
-
+        // swap if start greater than end
         if (end < start) {
             long tmp = end;
             end = start;
@@ -58,5 +58,4 @@ public class IPRange {
         }
         return ipStringBuilder.toString();
     }
-
 }
