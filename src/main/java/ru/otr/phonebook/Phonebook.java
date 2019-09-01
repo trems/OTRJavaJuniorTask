@@ -92,6 +92,8 @@ public class Phonebook {
         Phonebook phonebook = new Phonebook();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
+        System.out.println("Введите ФИО, чтобы получить список телефонов или exit для выхода");
+
         String input;
         while (true) {
             input = reader.readLine();
