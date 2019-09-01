@@ -24,6 +24,14 @@ public class Phonebook {
         this.phonebook.get("Сидоров С.С.").add("+8 800 2000 000");
     }
 
+    /**
+     * Выводит в System.out список телефонов для данного ФИО в формате:<br>
+     * 1. номер_телефона<br>
+     * 2. номер_телефона<br>
+     * 3. номер_телефона<br>
+     * 4. ...
+     * @param name ФИО, для которого нужно вывести телефоны
+     */
     public void printPhones(String name) {
         List<String> phones = getPhonesByName(name);
         if (phones.size() > 0) {
@@ -48,18 +56,32 @@ public class Phonebook {
         return Collections.emptyList();
     }
 
-    public void addPhone(String name, String phone) {
+    /**
+     * Добавляет телефон для соответствующего ФИО. Дубликаты не добавляются. При отсутствии нужного ФИО в БД добавляет его.
+     * @param name ФИО, для которого нужно добавить телефон
+     * @param phone номер телефона для добавления
+     * @return {@code true} если телефон был успешно добавлен для существующего или вновь созданного ФИО.
+     * {@code false} если у данного ФИО уже есть такой телефон.
+     */
+    public boolean addPhone(String name, String phone) {
         List<String> phones = getPhonesByName(name);
         if (phones.size() > 0) {
             if (!phones.contains(phone)) {
-                phones.add(phone);
+                return phones.add(phone);
             }
+            return false;
         } else {
             this.phonebook.put(name, new ArrayList<String>());
-            this.phonebook.get(name).add(phone);
+            return this.phonebook.get(name).add(phone);
         }
     }
 
+    /**
+     * Удаляет телефон у данного ФИО.
+     * @param name ФИО, у которого нужно удалить телефон
+     * @param phone номер телефона для удаления
+     * @return {@code true} если телефон был представлен в БД и затем успешно удален
+     */
     public boolean removePhone(String name, String phone) {
         List<String> phones = getPhonesByName(name);
         return phones.remove(phone);
